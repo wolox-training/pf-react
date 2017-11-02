@@ -7,18 +7,18 @@ header{
   border-top: 5px solid #F5C85F;
   margin: 0;
 }
-.contenedor-header{
+.container-header{
   margin-top: 5%;
 }
-.contenedor-logo{
+.container-logo{
   width:50%;
   float: right;
   text-align: left;
 }
-.contenedor-logo img{
+.container-logo img{
   margin-top: 20%;
 }
-.contenedor-telefono{
+.container-phone{
   text-align: right;
   width:46%;
   float: left;
@@ -49,19 +49,92 @@ header{
       #fff 100%
   ) 0 100% 0 0/0 5px 0 0 stretch;
 }
-.contenedor-telefono img{
+.container-phone img{
   margin-right: 4%;
+}
+
+.container-features{
+  margin-top: 34%;
+  clear:both;
+  border: 15px solid transparent;
+  border-image-source: url(../img/triangle.png);
+  border-image-repeat: repeat;
+  border-image-slice: 30 0;
+  border-bottom:0;
+  border-left:0;
+  border-right:0;
+
+}
+.container-info-features{
+  background-color:#EEE;
+  color:#999;
+  display: table;
+  width:100%
+}
+.container-info-features h4{
+  color: #111;
+}
+
+.containter-row-feature{
+  display: table-row;
+}
+
+.container-feature{
+  display: table-cell;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+}
+
+.container-footer{
+  background: #F5C85F;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0px -5px 56px -21px rgba(0,0,0,0.75);
+}
+
+#txtMailSubscribe{
+  border-radius: 5px;
+  font-size: 22px;
+  border: 1px solid #fff;
+}
+
+#btnSendSubscription{
+  background: #F5C85F;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 18px;
+  border: 1px solid #fff;
+  padding: 6px 10px 6px 10px;
+  margin-top: 1%;
+}
+
+.container-footer h4 {
+    margin-top: 0px;
+}
+
+.container-form-subscribe{
+  padding-top: 2%;
+  padding-bottom: 3%;
 }
 
 
 @media only screen and (max-width: 768px) {
-    .contenedor-telefono {
+    .container-phone {
         display:none;
     }
 
-    .contenedor-logo{
+    .container-logo{
       width:100%;
       float: none;
       text-align: center;
+    }
+
+    .container-info-features, .containter-row-feature{
+        display: block;
+    }
+    .container-feature {
+        display:inline-block;
+        width: 100%;
     }
 }

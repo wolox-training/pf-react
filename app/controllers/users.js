@@ -27,8 +27,7 @@ exports.signup = (request, response, next) => {
     return next(errors.defaultError('it must be a valid wolox.com email'));
   }
 
-  bcrypt.hash(newUser.password, saltRounds)
-  .then(hash => {
+  bcrypt.hash(newUser.password, saltRounds).then(hash => {
     newUser.password = hash;
     userService
       .createUser(newUser)
@@ -59,7 +58,7 @@ exports.signin = (request, response, next) => {
   if (!regexValidEmail.test(userLogin.email)) {
     return next(errors.defaultError('it must be a valid wolox.com email'));
   }
-  
+
   userService
     .getByEmail(userLogin.email)
     .then(user => {

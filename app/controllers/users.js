@@ -67,15 +67,15 @@ exports.signin = (request, response, next) => {
         bcrypt.compare(userLogin.password, user.password).then(valid => {
           if (valid) {
             sessionManager.generateAccessToken(user.id).then(accessToken => {
-              user.auth_code_validation = accessToken.authCode;
-              user.save().then(success => {
-                console.log('success login');
-                response.status(200);
-                response.send({
-                  accessToken: accessToken.accessToken,
-                  refreshToken: accessToken.refreshToken
+              userService
+                .updateByUserId({ auth_code_validation: accessToken.authCode }, user.id)
+                .then(success => {
+                  response.status(200);
+                  response.send({
+                    accessToken: accessToken.accessToken,
+                    refreshToken: accessToken.refreshToken
+                  });
                 });
-              });
             });
           } else {
             next(errors.invalidUser());

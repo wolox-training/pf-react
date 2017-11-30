@@ -34,3 +34,9 @@ exports.countAllUsers = () => {
     throw errors.databaseError(error.message);
   });
 };
+
+exports.updateByUserId = (fields, userId) => {
+  return orm.models.user.update(fields, { where: { id: userId } }).catch(error => {
+    throw errors.savingError(error.message);
+  });
+};

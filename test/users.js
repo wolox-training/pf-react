@@ -134,8 +134,8 @@ describe('users', () => {
           .then(response => {
             response.should.have.status(200);
             response.should.be.json;
-          })
-          .then(() => done());
+            done();
+          });
       });
     });
   });

@@ -11,7 +11,8 @@ exports.execute = db => {
           firstName: 'persona1',
           lastName: 'apellido1',
           email: 'email1@wolox.com',
-          password: hash
+          password: hash,
+          is_administrator: false
         })
       );
 
@@ -20,7 +21,8 @@ exports.execute = db => {
           firstName: 'persona2',
           lastName: 'apellido2',
           email: 'email2@wolox.com',
-          password: hash
+          password: hash,
+          is_administrator: false
         })
       );
 
@@ -29,7 +31,8 @@ exports.execute = db => {
           firstName: 'persona3',
           lastName: 'apellido3',
           email: 'email3@wolox.com',
-          password: hash
+          password: hash,
+          is_administrator: false
         })
       );
 
@@ -38,10 +41,20 @@ exports.execute = db => {
           firstName: 'persona4',
           lastName: 'apellido4',
           email: 'email4@wolox.com',
-          password: hash
+          password: hash,
+          is_administrator: false
         })
       );
 
+      inserts.push(
+        db.models.user.create({
+          firstName: 'administrator',
+          lastName: 'administrator',
+          email: 'admin@wolox.com',
+          password: hash,
+          is_administrator: true
+        })
+      );
       return Promise.all(inserts);
     })
     .catch(error => {

@@ -24,6 +24,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      auth_code_validation: {
+        type: Sequelize.TEXT,
+        allowNull: true
+      },
+      is_administrator: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
       created_at: Sequelize.DATE,
       updated_at: Sequelize.DATE,
       deleted_at: Sequelize.DATE

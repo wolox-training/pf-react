@@ -6,6 +6,7 @@ const jwt = require('jwt-simple'),
 
 const SECREY_KEY_TOKEN = config.common.session.secret;
 const EXPIRATION_DATE = 2;
+const SALT_ROUNDS = 10;
 
 const expirationDate = () => {
   return moment().add(EXPIRATION_DATE, 'days');
@@ -22,10 +23,23 @@ exports.decode = textToDecode => {
 };
 
 exports.generateAccessToken = userIdToEncode => {
-  const tokenToEncode = {
-    expirationDate: expirationDate(),
-    userId: userIdToEncode
-  };
+  const authCodeValidation = exports.generateAuthCodeValidation();
 
-  return exports.encode(tokenToEncode);
+  const accessTokenEncoded = exports.encode({
+    expirationDate: expirationDate(),
+    userId: userIdToEncode,
+    authCode: authCodeValidation
+  });
+
+  return bcrypt.genSalt(SALT_ROUNDS).then(saltGenerated => {
+    return {
+      accessToken: accessTokenEncoded,
+      authCode: authCodeValidation
+    };
+  });
+};
+
+exports.generateAuthCodeValidation = () => {
+  const randomNumber = Math.random() * (1 - 9999) + 9999;
+  return exports.encode(randomNumber);
 };

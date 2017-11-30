@@ -1,7 +1,23 @@
 const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('./../app'),
+  sessionManager = require('../app/services/sessionManager'),
   should = chai.should();
+
+const successfulLogin = callback => {
+  chai
+    .request(server)
+    .post('/users/sessions')
+    .send({
+      email: 'admin@wolox.com',
+      password: 'falabella2017'
+    })
+    .end((error, respose) => {
+      if (callback) {
+        callback(error, respose);
+      }
+    });
+};
 
 describe('users', () => {
   describe('/users POST', () => {
@@ -13,7 +29,8 @@ describe('users', () => {
           firstName: 'persona5',
           lastName: 'apellido5',
           password: 'falabella2017',
-          email: 'email5@wolox.com'
+          email: 'email5@wolox.com',
+          is_administrator: false
         })
         .then(res => {
           res.should.have.status(200);
@@ -74,21 +91,6 @@ describe('users', () => {
   });
 
   describe('/users/sessions POST', () => {
-    it('should be success', done => {
-      chai
-        .request(server)
-        .post('/users/sessions')
-        .send({
-          email: 'email1@wolox.com',
-          password: 'falabella2017'
-        })
-        .then(res => {
-          res.should.have.status(200);
-          res.should.be.json;
-          dictum.chai(res);
-        })
-        .then(() => done());
-    });
     it('should fail because required parameters are missing', done => {
       chai
         .request(server)
@@ -102,6 +104,93 @@ describe('users', () => {
           err.response.body.should.have.property('error');
         })
         .then(() => done());
+    });
+    it('should be success', done => {
+      chai
+        .request(server)
+        .post('/users/sessions')
+        .send({
+          email: 'email1@wolox.com',
+          password: 'falabella2017'
+        })
+        .catch(err => {
+          err.should.have.status(400);
+          err.response.should.be.json;
+          err.response.body.should.have.property('error');
+        })
+        .then(() => done());
+    });
+  });
+
+  describe('/users/sessions/renew POST', () => {
+    it('should be success renew session', done => {
+      successfulLogin((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/users/sessions/renew')
+          .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
+          .send({
+            refreshToken: loginResponse.body.refreshToken
+          })
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.should.be.json;
+            done();
+          });
+      });
+    });
+  });
+
+  describe('/users/sessions/invalidateAll POST', () => {
+    it('should be success invalidation', done => {
+      successfulLogin((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/users/sessions/invalidateAll')
+          .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
+          .end((err, res) => {
+            res.should.have.status(200);
+            done();
+          });
+      });
+    });
+  });
+
+  describe('/users GET', () => {
+    it('should be successful', done => {
+      successfulLogin((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .get('/users')
+          .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.should.be.json;
+            done();
+          });
+      });
+    });
+  });
+
+  describe('/admin/users POST', () => {
+    it('should be successful', done => {
+      successfulLogin((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/admin/users')
+          .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
+          .send({
+            firstName: 'personaAdmin',
+            lastName: 'admin',
+            password: 'falabella2017',
+            email: 'admin2@wolox.com',
+            is_administrator: true
+          })
+          .end((err, res) => {
+            res.should.have.status(200);
+            done();
+          });
+      });
     });
   });
 });

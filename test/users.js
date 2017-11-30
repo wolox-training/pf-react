@@ -113,9 +113,9 @@ describe('users', () => {
           email: 'email1@wolox.com',
           password: 'falabella2017'
         })
-        .then(response => {
-          response.should.have.status(200);
-          response.should.be.json;
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
           done();
         });
     });

@@ -16,7 +16,8 @@ exports.signup = (request, response, next) => {
         lastName: request.body.lastName,
         email: request.body.email,
         password: request.body.password,
-        is_administrator: false
+        is_administrator: false,
+        auth_code_validation: sessionManager.generateAuthCodeValidation()
       }
     : {};
 
@@ -66,16 +67,11 @@ exports.signin = (request, response, next) => {
       if (user != null) {
         bcrypt.compare(userLogin.password, user.password).then(valid => {
           if (valid) {
-            sessionManager.generateAccessToken(user.id).then(accessToken => {
-              userService
-                .updateByUserId({ auth_code_validation: accessToken.authCode }, user.id)
-                .then(success => {
-                  response.status(200);
-                  response.send({
-                    accessToken: accessToken.accessToken,
-                    refreshToken: accessToken.refreshToken
-                  });
-                });
+            sessionManager.generateAccessToken(user).then(accessToken => {
+              response.status(200);
+              response.send({
+                accessToken: accessToken.accessToken
+              });
             });
           } else {
             next(errors.invalidUser());

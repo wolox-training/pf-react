@@ -22,19 +22,16 @@ exports.decode = textToDecode => {
   return jwt.decode(textToDecode, SECREY_KEY_TOKEN);
 };
 
-exports.generateAccessToken = userIdToEncode => {
-  const authCodeValidation = exports.generateAuthCodeValidation();
-
+exports.generateAccessToken = user => {
   const accessTokenEncoded = exports.encode({
     expirationDate: expirationDate(),
-    userId: userIdToEncode,
-    authCode: authCodeValidation
+    userId: user.id,
+    authCode: user.auth_code_validation
   });
 
   return bcrypt.genSalt(SALT_ROUNDS).then(saltGenerated => {
     return {
-      accessToken: accessTokenEncoded,
-      authCode: authCodeValidation
+      accessToken: accessTokenEncoded
     };
   });
 };

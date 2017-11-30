@@ -1,4 +1,5 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'),
+  sessionManager = require('../../services/sessionManager');
 
 exports.execute = db => {
   return bcrypt
@@ -52,7 +53,8 @@ exports.execute = db => {
           lastName: 'administrator',
           email: 'admin@wolox.com',
           password: hash,
-          is_administrator: true
+          is_administrator: true,
+          auth_code_validation: sessionManager.generateAuthCodeValidation()
         })
       );
       return Promise.all(inserts);

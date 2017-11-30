@@ -69,6 +69,7 @@ exports.signin = (request, response, next) => {
             sessionManager.generateAccessToken(user.id).then(accessToken => {
               user.auth_code_validation = accessToken.authCode;
               user.save().then(success => {
+                console.log('success login');
                 response.status(200);
                 response.send({
                   accessToken: accessToken.accessToken,

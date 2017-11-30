@@ -113,10 +113,9 @@ describe('users', () => {
           email: 'email1@wolox.com',
           password: 'falabella2017'
         })
-        .catch(err => {
-          err.should.have.status(400);
-          err.response.should.be.json;
-          err.response.body.should.have.property('error');
+        .then(response => {
+          response.should.have.status(200);
+          response.should.be.json;
         })
         .then(() => done());
     });
@@ -132,11 +131,11 @@ describe('users', () => {
           .send({
             refreshToken: loginResponse.body.refreshToken
           })
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.should.be.json;
-            done();
-          });
+          .then(response => {
+            response.should.have.status(200);
+            response.should.be.json;
+          })
+          .then(() => done());
       });
     });
   });
@@ -148,10 +147,10 @@ describe('users', () => {
           .request(server)
           .post('/users/sessions/invalidateAll')
           .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
-          .end((err, res) => {
-            res.should.have.status(200);
-            done();
-          });
+          .then(response => {
+            response.should.have.status(200);
+          })
+          .then(() => done());
       });
     });
   });
@@ -163,11 +162,11 @@ describe('users', () => {
           .request(server)
           .get('/users')
           .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.should.be.json;
-            done();
-          });
+          .then(response => {
+            response.should.have.status(200);
+            response.should.be.json;
+          })
+          .then(() => done());
       });
     });
   });
@@ -186,10 +185,10 @@ describe('users', () => {
             email: 'admin2@wolox.com',
             is_administrator: true
           })
-          .end((err, res) => {
-            res.should.have.status(200);
-            done();
-          });
+          .then(response => {
+            response.should.have.status(200);
+          })
+          .then(() => done());
       });
     });
   });

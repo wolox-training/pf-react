@@ -101,7 +101,7 @@ exports.listUsers = (request, response, next) => {
               firsName: user.firsName,
               lastName: user.lastName,
               email: user.email,
-              isAdministrator: user.isAdministrator,
+              isAdministrator: user.is_administrator,
               created_at: user.created_at,
               updated_at: user.updated_at
             };

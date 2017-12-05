@@ -1,28 +1,14 @@
 const chai = require('chai'),
   dictum = require('dictum.js'),
-  server = require('./../app'),
+  server = require('../app'),
   sessionManager = require('../app/services/sessionManager'),
+  utils = require('./utils'),
   should = chai.should();
-
-const login = callback => {
-  chai
-    .request(server)
-    .post('/users/sessions')
-    .send({
-      email: 'admin@wolox.com',
-      password: 'falabella2017'
-    })
-    .end((error, respose) => {
-      if (callback) {
-        callback(error, respose);
-      }
-    });
-};
 
 describe('games', () => {
   describe('/games POST', () => {
     it('should be success', done => {
-      login((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .post('/games')
@@ -39,11 +25,22 @@ describe('games', () => {
           .then(() => done());
       });
     });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/games')
+          .catch(err => {
+            err.should.have.status(401);
+            done();
+          });
+      });
+    });
   });
 
   describe('/games GET', () => {
     it('should be success', done => {
-      login((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .get('/games')
@@ -56,11 +53,22 @@ describe('games', () => {
           .then(() => done());
       });
     });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .get('/games')
+          .catch(err => {
+            err.should.have.status(401);
+            done();
+          });
+      });
+    });
   });
 
   describe('/games/:game_id/match POST', () => {
     it('should be success', done => {
-      login((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .post('/games/1/match')
@@ -75,11 +83,49 @@ describe('games', () => {
           .then(() => done());
       });
     });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/games/1/match')
+          .send({
+            hits: 50
+          })
+          .catch(err => {
+            err.should.have.status(401);
+            done();
+          });
+      });
+    });
+    it('should fail because hits is not send', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/games/1/match')
+          .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
+          .catch(err => {
+            err.should.have.status(400);
+            done();
+          });
+      });
+    });
+    it('should fail because game id is wrong', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/games/uno/match')
+          .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
+          .catch(err => {
+            err.should.have.status(400);
+            done();
+          });
+      });
+    });
   });
 
   describe('/games/:game_id/match GET', () => {
     it('should be success', done => {
-      login((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .get('/games/1/match')
@@ -90,6 +136,17 @@ describe('games', () => {
             dictum.chai(res);
           })
           .then(() => done());
+      });
+    });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .get('/games/1/match')
+          .catch(err => {
+            err.should.have.status(401);
+            done();
+          });
       });
     });
   });

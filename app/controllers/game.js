@@ -72,7 +72,7 @@ exports.listGames = (request, response, next) => {
 exports.matchGame = (request, response, next) => {
   const userLogged = request.user;
 
-  if (!request.params.game_id) {
+  if (!request.params.game_id && !Number.isInteger(request.params.game_id)) {
     return next(errors.defaultError('you must enter the game id'));
   }
 

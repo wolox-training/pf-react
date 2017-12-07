@@ -2,22 +2,8 @@ const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('./../app'),
   sessionManager = require('../app/services/sessionManager'),
+  utils = require('./utils'),
   should = chai.should();
-
-const successfulLogin = callback => {
-  chai
-    .request(server)
-    .post('/users/sessions')
-    .send({
-      email: 'admin@wolox.com',
-      password: 'falabella2017'
-    })
-    .end((error, respose) => {
-      if (callback) {
-        callback(error, respose);
-      }
-    });
-};
 
 describe('users', () => {
   describe('/users POST', () => {
@@ -123,17 +109,25 @@ describe('users', () => {
 
   describe('/users/sessions/renew POST', () => {
     it('should be success renew session', done => {
-      successfulLogin((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .post('/users/sessions/renew')
           .set(sessionManager.HEADER_NAME_FIELD_TOKEN, loginResponse.body.accessToken)
-          .send({
-            refreshToken: loginResponse.body.refreshToken
-          })
           .then(response => {
             response.should.have.status(200);
             response.should.be.json;
+            done();
+          });
+      });
+    });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/users/sessions/renew')
+          .catch(err => {
+            err.should.have.status(401);
             done();
           });
       });
@@ -142,7 +136,7 @@ describe('users', () => {
 
   describe('/users/sessions/invalidateAll POST', () => {
     it('should be success invalidation', done => {
-      successfulLogin((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .post('/users/sessions/invalidateAll')
@@ -153,11 +147,22 @@ describe('users', () => {
           .then(() => done());
       });
     });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/users/sessions/invalidateAll')
+          .catch(err => {
+            err.should.have.status(401);
+            done();
+          });
+      });
+    });
   });
 
   describe('/users GET', () => {
     it('should be successful', done => {
-      successfulLogin((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .get('/users')
@@ -169,11 +174,22 @@ describe('users', () => {
           .then(() => done());
       });
     });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .get('/users')
+          .catch(err => {
+            err.should.have.status(401);
+            done();
+          });
+      });
+    });
   });
 
   describe('/admin/users POST', () => {
     it('should be successful', done => {
-      successfulLogin((loginError, loginResponse) => {
+      utils.login((loginError, loginResponse) => {
         chai
           .request(server)
           .post('/admin/users')
@@ -189,6 +205,17 @@ describe('users', () => {
             response.should.have.status(200);
           })
           .then(() => done());
+      });
+    });
+    it('should fail because header with access token is not sent', done => {
+      utils.login((loginError, loginResponse) => {
+        chai
+          .request(server)
+          .post('/admin/users')
+          .catch(err => {
+            err.should.have.status(401);
+            done();
+          });
       });
     });
   });

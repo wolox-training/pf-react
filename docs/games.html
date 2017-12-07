@@ -1,0 +1,45 @@
+<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /><script src="https://code.jquery.com/jquery-1.12.2.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script><style> pre { width: 95%; } </style></head><body><div class="container"><div class="jumbotron"><h1>Games</h1></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-POST" href="#collapse-games-POST">POST /games</a></h4></div><div id="collapse-games-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjcuNzgwWiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuTlRJNE1pNDRNREl5TkRZeE5EWXlOZy5FSWVrX1dURlRlN0xWR0NhUktXb2FFM1I5ODc3SDBhUmVKeVRnQ180RVJRIn0.jfSlaYqTbqB4OWPzNnvhG-wnrHYLmDYDbMTNzs2E6iE",
+  "content-type": "application/json",
+  "content-length": 61
+}</pre><h5>Body</h5><pre>{
+  "codeGame": "wolox-test-001",
+  "name": "wolox-test",
+  "score": 100
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjcuNzgwWiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuTlRJNE1pNDRNREl5TkRZeE5EWXlOZy5FSWVrX1dURlRlN0xWR0NhUktXb2FFM1I5ODc3SDBhUmVKeVRnQ180RVJRIn0.jfSlaYqTbqB4OWPzNnvhG-wnrHYLmDYDbMTNzs2E6iE",
+  "content-type": "application/json",
+  "content-length": 61
+}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-GET" href="#collapse-games-GET">GET /games</a></h4></div><div id="collapse-games-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjguMjQzWiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuTVRjMk1pNDJNelkzTVRJeU5qZ3hNalU0Ll9oZ1Ztd3NTX2prendpeG1Nb1IxQzVKdzUwQ1YwZi1QXzVkUFhLekhPSEUifQ.N1Wj3VweI27JE6VLnKSMeKFY_YXnOM2AfyO5C320GgE"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjguMjQzWiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuTVRjMk1pNDJNelkzTVRJeU5qZ3hNalU0Ll9oZ1Ztd3NTX2prendpeG1Nb1IxQzVKdzUwQ1YwZi1QXzVkUFhLekhPSEUifQ.N1Wj3VweI27JE6VLnKSMeKFY_YXnOM2AfyO5C320GgE"
+}</pre><h5>Body</h5><pre>{
+  "paging": {
+    "total": 0,
+    "limit": 10,
+    "offset": 0
+  },
+  "games": []
+}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-1-match-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-1-match-POST" href="#collapse-games-1-match-POST">POST /games/1/match</a></h4></div><div id="collapse-games-1-match-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-1-match-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjguNjYyWiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuTmpNNE9DNDRNalE0TWpRME5qSTBNalkxLjdoQU82Wmg1TWV2NkhWSExhVVpPUzZEWFByeEstTTFNVTR5b0ZXNkJfUUEifQ.WEh6Z0X8TVgtYGwfCkCvOu7fNZkabXAt8HwON-GpWPk",
+  "content-type": "application/json",
+  "content-length": 11
+}</pre><h5>Body</h5><pre>{
+  "hits": 50
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjguNjYyWiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuTmpNNE9DNDRNalE0TWpRME5qSTBNalkxLjdoQU82Wmg1TWV2NkhWSExhVVpPUzZEWFByeEstTTFNVTR5b0ZXNkJfUUEifQ.WEh6Z0X8TVgtYGwfCkCvOu7fNZkabXAt8HwON-GpWPk",
+  "content-type": "application/json",
+  "content-length": 11
+}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-1-match-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-1-match-GET" href="#collapse-games-1-match-GET">GET /games/1/match</a></h4></div><div id="collapse-games-1-match-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-1-match-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjkuNDk0WiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuT1RVeE5TNDJNVGs1TkRFM01qZ3lOemsuZlNrR2wzMmNTNzNZQ2xzZVNVbDA3cmo5ZWRBcldGNjJJOE80OWNUd2ZCSSJ9.7pYD93R6PhywpMbFVEbFN0YBkyZKGmN88EERN8y1cKM"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDdUMTQ6Mzg6MjkuNDk0WiIsInVzZXJJZCI6NSwiYXV0aENvZGUiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuT1RVeE5TNDJNVGs1TkRFM01qZ3lOemsuZlNrR2wzMmNTNzNZQ2xzZVNVbDA3cmo5ZWRBcldGNjJJOE80OWNUd2ZCSSJ9.7pYD93R6PhywpMbFVEbFN0YBkyZKGmN88EERN8y1cKM"
+}</pre><h5>Body</h5><pre>{
+  "paging": {
+    "total": 0,
+    "limit": 10,
+    "offset": 0
+  },
+  "match": []
+}</pre></div></div></div></div></div></body></html>

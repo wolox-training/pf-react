@@ -7,8 +7,6 @@ exports.DB_URL =
   `postgres://${config.common.database.username}:${config.common.database.password}
   @${config.common.database.host}:${config.common.database.port}/${config.common.database.name}`; // eslint-disable-line max-len
 
-console.log(exports.DB_URL);
-
 exports.init = () => {
   const db = new Sequelize(exports.DB_URL, {
     logging: config.isDevelopment

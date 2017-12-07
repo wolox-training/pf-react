@@ -1,7 +1,10 @@
 const chai = require('chai'),
   dictum = require('dictum.js'),
   server = require('./../app'),
+  faker = require('faker'),
   should = chai.should();
+
+faker.locale = 'es_MX';
 
 describe('users', () => {
   describe('/users POST', () => {
@@ -10,13 +13,19 @@ describe('users', () => {
         .request(server)
         .post('/users')
         .send({
-          firstName: 'persona5',
-          lastName: 'apellido5',
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           password: 'falabella2017',
           email: 'email5@wolox.com'
         })
         .then(res => {
+          res.should.be.json;
           res.should.have.status(200);
+          res.body.should.have.property('id').not.be.equal(0);
+          res.body.should.have.property('firstName');
+          res.body.should.have.property('lastName');
+          res.body.should.have.property('password');
+          res.body.should.have.property('email');
           dictum.chai(res);
         })
         .then(() => done());
@@ -26,32 +35,34 @@ describe('users', () => {
         .request(server)
         .post('/users')
         .send({
-          firstName: 'persona6',
-          lastName: 'apellido6',
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           password: 'falabella2017',
-          email: 'email5@wolox.com'
+          email: 'email1@wolox.com'
         })
         .catch(err => {
           err.should.have.status(400);
           err.response.should.be.json;
-          err.response.body.should.have.property('error');
+          err.response.body.should.have.property('error').equal('email must be unique');
         })
-        .then(() => done());
+        .then(res => done());
     });
     it('should fail because password requirements', done => {
       chai
         .request(server)
         .post('/users')
         .send({
-          firstName: 'persona7',
-          lastName: 'apellido7',
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           password: 'fala1',
           email: 'email7@wolox.com'
         })
         .catch(err => {
           err.should.have.status(400);
           err.response.should.be.json;
-          err.response.body.should.have.property('error');
+          err.response.body.should.have
+            .property('error')
+            .equal('the password must be 8 characters long and alphanumeric');
         })
         .then(() => done());
     });
@@ -60,14 +71,14 @@ describe('users', () => {
         .request(server)
         .post('/users')
         .send({
-          firstName: 'persona8',
+          firstName: faker.name.firstName(),
           password: 'falabella2017',
           email: 'email8@wolox.com'
         })
         .catch(err => {
           err.should.have.status(400);
           err.response.should.be.json;
-          err.response.body.should.have.property('error');
+          err.response.body.should.have.property('error').equal('lastName cannot be null');
         })
         .then(() => done());
     });

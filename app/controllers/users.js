@@ -19,7 +19,7 @@ exports.signup = (request, response, next) => {
       }
     : {};
 
-  if (newUser.password.length < 8 && !regexAlphanumericPass.test(newUser.password)) {
+  if (newUser.password.length < 8 || !regexAlphanumericPass.test(newUser.password)) {
     return next(errors.defaultError('the password must be 8 characters long and alphanumeric'));
   }
 
@@ -33,7 +33,7 @@ exports.signup = (request, response, next) => {
       .createUser(newUser)
       .then(u => {
         response.status(200);
-        response.end();
+        response.send(u);
       })
       .catch(err => {
         next(err);
@@ -62,21 +62,17 @@ exports.signin = (request, response, next) => {
   userService
     .getByEmail(userLogin.email)
     .then(user => {
-      if (user != null) {
-        bcrypt.compare(userLogin.password, user.password).then(valid => {
-          if (valid) {
-            const NewSession = {
-              accessToken: sessionManager.generateAccessToken
-            };
-            response.status(200);
-            response.send(NewSession);
-          } else {
-            next(errors.invalidUser());
-          }
-        });
-      } else {
-        next(errors.invalidUser());
-      }
+      if (!user) return next(errors.invalidUser());
+
+      bcrypt.compare(userLogin.password, user.password).then(valid => {
+        if (!valid) return next(errors.invalidUser());
+
+        const NewSession = {
+          accessToken: sessionManager.generateAccessToken
+        };
+        response.status(200);
+        response.send(NewSession);
+      });
     })
     .catch(err => {
       next(err);

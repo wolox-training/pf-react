@@ -3,7 +3,7 @@ const orm = require('./../orm'),
 
 exports.createUser = user => {
   return orm.models.user.create(user).catch(error => {
-    throw errors.savingDBError(error.message);
+    throw errors.savingDBError(error.errors[0].message);
   });
 };
 

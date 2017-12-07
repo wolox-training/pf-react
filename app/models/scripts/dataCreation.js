@@ -1,4 +1,7 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'),
+  faker = require('faker');
+
+faker.locale = 'es_MX';
 
 exports.execute = db => {
   return bcrypt
@@ -8,8 +11,8 @@ exports.execute = db => {
 
       inserts.push(
         db.models.user.create({
-          firstName: 'persona1',
-          lastName: 'apellido1',
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           email: 'email1@wolox.com',
           password: hash
         })
@@ -17,8 +20,8 @@ exports.execute = db => {
 
       inserts.push(
         db.models.user.create({
-          firstName: 'persona2',
-          lastName: 'apellido2',
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           email: 'email2@wolox.com',
           password: hash
         })
@@ -26,8 +29,8 @@ exports.execute = db => {
 
       inserts.push(
         db.models.user.create({
-          firstName: 'persona3',
-          lastName: 'apellido3',
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           email: 'email3@wolox.com',
           password: hash
         })
@@ -35,8 +38,8 @@ exports.execute = db => {
 
       inserts.push(
         db.models.user.create({
-          firstName: 'persona4',
-          lastName: 'apellido4',
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           email: 'email4@wolox.com',
           password: hash
         })

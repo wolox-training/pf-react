@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt'),
 exports.createGame = (request, response, next) => {
   const userLogged = request.user;
 
-  if (userLogged && userLogged.is_administrator) {
+  if (userLogged && userLogged.isAdministrator) {
     const newGame = request.body
       ? {
           codeGame: request.body.codeGame,
@@ -21,15 +21,13 @@ exports.createGame = (request, response, next) => {
     gameService
       .createGame(newGame)
       .then(u => {
-        response.status(200);
-        response.end();
+        response.sendStatus(200);
       })
       .catch(err => {
         next(err);
       });
   } else {
-    response.status(401);
-    response.end();
+    response.sendStatus(401);
   }
 };
 
@@ -89,8 +87,7 @@ exports.matchGame = (request, response, next) => {
   matchGameService
     .createMatch(newMatchGame)
     .then(u => {
-      response.status(200);
-      response.end();
+      response.sendStatus(200);
     })
     .catch(err => {
       next(err);

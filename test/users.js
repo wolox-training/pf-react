@@ -16,7 +16,7 @@ describe('users', () => {
           lastName: 'apellido5',
           password: 'falabella2017',
           email: 'email5@wolox.com',
-          is_administrator: false
+          isAdmnistrator: false
         })
         .then(res => {
           res.should.have.status(200);
@@ -199,7 +199,7 @@ describe('users', () => {
             lastName: 'admin',
             password: 'falabella2017',
             email: 'admin2@wolox.com',
-            is_administrator: true
+            isAdmnistrator: true
           })
           .then(response => {
             response.should.have.status(200);

@@ -18,22 +18,18 @@ exports.authentication = (request, response, next) => {
           ) {
             request.user = user;
             request.accessToken = accessTokenEncrypted;
-            next();
           } else {
             response.status(401);
-            next();
           }
+          next();
         } else {
-          response.status(401);
-          response.send();
+          response.sendStatus(401);
         }
       })
       .catch(error => {
-        response.status(401);
-        response.send();
+        response.sendStatus(401);
       });
   } else {
-    response.status(401);
-    response.send();
+    response.sendStatus(401);
   }
 };

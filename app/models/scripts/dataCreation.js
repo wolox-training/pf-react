@@ -13,7 +13,7 @@ exports.execute = db => {
           lastName: 'apellido1',
           email: 'email1@wolox.com',
           password: hash,
-          is_administrator: false
+          isAdministrator: false
         })
       );
 
@@ -23,7 +23,7 @@ exports.execute = db => {
           lastName: 'apellido2',
           email: 'email2@wolox.com',
           password: hash,
-          is_administrator: false
+          isAdministrator: false
         })
       );
 
@@ -33,7 +33,7 @@ exports.execute = db => {
           lastName: 'apellido3',
           email: 'email3@wolox.com',
           password: hash,
-          is_administrator: false
+          isAdministrator: false
         })
       );
 
@@ -43,7 +43,7 @@ exports.execute = db => {
           lastName: 'apellido4',
           email: 'email4@wolox.com',
           password: hash,
-          is_administrator: false
+          isAdministrator: false
         })
       );
 
@@ -53,8 +53,8 @@ exports.execute = db => {
           lastName: 'administrator',
           email: 'admin@wolox.com',
           password: hash,
-          is_administrator: true,
-          auth_code_validation: sessionManager.generateAuthCodeValidation()
+          isAdministrator: true,
+          authCodeValidation: sessionManager.generateAuthCodeValidation()
         })
       );
       return Promise.all(inserts);

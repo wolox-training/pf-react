@@ -27,11 +27,11 @@ exports.getModel = db => {
         type: Sequelize.STRING,
         allowNull: false
       },
-      auth_code_validation: {
+      authCodeValidation: {
         type: Sequelize.TEXT,
         allowNull: true
       },
-      is_administrator: {
+      isAdministrator: {
         type: Sequelize.BOOLEAN,
         allowNull: false
       }

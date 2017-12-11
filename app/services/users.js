@@ -7,14 +7,36 @@ exports.createUser = user => {
   });
 };
 
-exports.getByEmail = emailSearch => {
-  const whereClause = {
-    where: {
-      email: emailSearch
-    }
-  };
+exports.getOne = user => {
+  return orm.models.user.findOne({ where: user }).catch(err => {
+    throw errors.databaseError(err.detail);
+  });
+};
 
-  return orm.models.user.findOne(whereClause).catch(error => {
+exports.getByEmail = email => {
+  return exports.getOne({ email });
+};
+
+exports.getById = idUser => {
+  return orm.models.user.findById(idUser).catch(error => {
     throw errors.databaseError(error.message);
+  });
+};
+
+exports.getAllUsersPaginate = (limit, offset) => {
+  return orm.models.user.findAll({ offset, limit }).catch(error => {
+    throw errors.databaseError(error.message);
+  });
+};
+
+exports.countAllUsers = () => {
+  return orm.models.user.count().catch(error => {
+    throw errors.databaseError(error.message);
+  });
+};
+
+exports.updateByUserId = (fields, userId) => {
+  return orm.models.user.update(fields, { where: { id: userId } }).catch(error => {
+    throw errors.savingError(error.message);
   });
 };

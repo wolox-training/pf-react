@@ -1,35 +1,23 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('user', {
+    return queryInterface.createTable('game', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
-      firstName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email: {
+      codeGame: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
       },
-      password: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      auth_code_validation: {
-        type: Sequelize.TEXT,
-        allowNull: true
-      },
-      is_administrator: {
-        type: Sequelize.BOOLEAN,
+      score: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       created_at: Sequelize.DATE,
@@ -38,6 +26,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('user');
+    return queryInterface.dropTable('game');
   }
 };

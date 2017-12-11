@@ -26,6 +26,14 @@ exports.getModel = db => {
       password: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      authCodeValidation: {
+        type: Sequelize.TEXT,
+        allowNull: true
+      },
+      isAdministrator: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       }
     },
     {

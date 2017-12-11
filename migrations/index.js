@@ -32,7 +32,6 @@ exports.check = () => {
         return Promise.reject('Pending migrations, run: npm run migrations');
       } else {
         return umzug.up().catch(err => {
-          console.log(err);
           return Promise.reject('There are pending migrations that could not be executed');
         });
       }

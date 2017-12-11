@@ -1,0 +1,45 @@
+<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /><script src="https://code.jquery.com/jquery-1.12.2.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script><style> pre { width: 95%; } </style></head><body><div class="container"><div class="jumbotron"><h1>Games</h1></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-POST" href="#collapse-games-POST">POST /games</a></h4></div><div id="collapse-games-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTIuNzI4WiIsInVzZXJJZCI6NX0.IAKJCMwH85gqxX4mTXjJas22BWc4DQ5d2Ucgi04yRo0",
+  "content-type": "application/json",
+  "content-length": 61
+}</pre><h5>Body</h5><pre>{
+  "codeGame": "wolox-test-001",
+  "name": "wolox-test",
+  "score": 100
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTIuNzI4WiIsInVzZXJJZCI6NX0.IAKJCMwH85gqxX4mTXjJas22BWc4DQ5d2Ucgi04yRo0",
+  "content-type": "application/json",
+  "content-length": 61
+}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-GET" href="#collapse-games-GET">GET /games</a></h4></div><div id="collapse-games-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTMuMTYyWiIsInVzZXJJZCI6NX0.vZ9mAOb2ruii19ZWUKNTBOVQIrP-KP9Mmj0hQb-7eVw"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTMuMTYyWiIsInVzZXJJZCI6NX0.vZ9mAOb2ruii19ZWUKNTBOVQIrP-KP9Mmj0hQb-7eVw"
+}</pre><h5>Body</h5><pre>{
+  "paging": {
+    "total": 0,
+    "limit": 10,
+    "offset": 0
+  },
+  "games": []
+}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-1-match-POST"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-1-match-POST" href="#collapse-games-1-match-POST">POST /games/1/match</a></h4></div><div id="collapse-games-1-match-POST" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-1-match-POST"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTMuNTY4WiIsInVzZXJJZCI6NX0.THn91E9rYVjjy8XrXRdhIaJXGD2wy6ATUDEkPDUtu0w",
+  "content-type": "application/json",
+  "content-length": 11
+}</pre><h5>Body</h5><pre>{
+  "hits": 50
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTMuNTY4WiIsInVzZXJJZCI6NX0.THn91E9rYVjjy8XrXRdhIaJXGD2wy6ATUDEkPDUtu0w",
+  "content-type": "application/json",
+  "content-length": 11
+}</pre><h5>Body</h5><pre>{}</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-games-1-match-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-games-1-match-GET" href="#collapse-games-1-match-GET">GET /games/1/match</a></h4></div><div id="collapse-games-1-match-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-games-1-match-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTQuMzgwWiIsInVzZXJJZCI6NX0.hfJvR6KZPXZtJeWrELSYXouLUj6DHdjKvyKq-PJT9Yc"
+}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{
+  "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmF0aW9uRGF0ZSI6IjIwMTctMTItMDlUMjE6MzE6NTQuMzgwWiIsInVzZXJJZCI6NX0.hfJvR6KZPXZtJeWrELSYXouLUj6DHdjKvyKq-PJT9Yc"
+}</pre><h5>Body</h5><pre>{
+  "paging": {
+    "total": 0,
+    "limit": 10,
+    "offset": 0
+  },
+  "match": []
+}</pre></div></div></div></div></div></body></html>
